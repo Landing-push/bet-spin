@@ -511,20 +511,7 @@
             }
         }
 
-        .modal-prize {
-            color: white;
-            font-size: 24px;
-            font-weight: 900;
-            text-align: center;
-            width: 100%;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            margin: 0;
-            line-height: 1.2;
-        }
+
 
 
 
@@ -602,9 +589,7 @@
                 max-width: 400px;
             }
 
-            .modal-prize {
-                font-size: 15px;
-            }
+
 
 
 
@@ -672,7 +657,7 @@
     <!-- Modal -->
     <div class="stw-modal-overlay" id="modalOverlay">
         <div class="modal-box" id="clickableModal">
-            <p class="modal-prize" id="resultText">...</p>
+
         </div>
     </div>
 
@@ -692,12 +677,12 @@
 
         // Prize data
         const prizes = [
-            { id: 0, angle: 30, html: '<span class="amount">10</span><br><span class="unit">Free<br>Spin</span>', text: '10 Free Spin kazandınız!' },
-            { id: 1, angle: 90, html: '<span class="amount">100</span><span class="currency">₺</span><br><span class="unit">Bonus</span>', text: '100₺ Deneme Bonusu kazandınız!' },
-            { id: 2, angle: 150, html: '<span class="amount">50</span><span class="currency">₺</span><br><span class="unit">Bonus</span>', text: '50₺ Deneme Bonusu kazandınız!' },
-            { id: 3, angle: 210, html: '<span class="amount">2.500</span><br><span class="unit">Free<br>Spin</span>', text: '2.500 Free Spin kazandınız!' },
-            { id: 4, angle: 270, html: '<span class="amount">5.000</span><br><span class="unit">Free<br>Spin</span>', text: '5.000 Free Spin kazandınız!' },
-            { id: 5, angle: 330, html: '<span class="amount sansini-text" style="font-size: 20px;">ŞANSINI</span><br><span class="unit">TEKRAR<br>DENE</span>', text: 'Şansını tekrar dene! Bir kez daha çevir.' }
+            { id: 0, angle: 30, html: '<span class="amount">10</span><br><span class="unit">Free<br>Spin</span>' },
+            { id: 1, angle: 90, html: '<span class="amount">100</span><span class="currency">₺</span><br><span class="unit">Bonus</span>' },
+            { id: 2, angle: 150, html: '<span class="amount">50</span><span class="currency">₺</span><br><span class="unit">Bonus</span>' },
+            { id: 3, angle: 210, html: '<span class="amount">2.500</span><br><span class="unit">Free<br>Spin</span>' },
+            { id: 4, angle: 270, html: '<span class="amount">5.000</span><br><span class="unit">Free<br>Spin</span>' },
+            { id: 5, angle: 330, html: '<span class="amount sansini-text" style="font-size: 20px;">ŞANSINI</span><br><span class="unit">TEKRAR<br>DENE</span>' }
         ];
 
         let isSpinning = false;
@@ -707,9 +692,8 @@
         const wheelInner = wheel.querySelector('.wheel');
         const spinBtn = document.getElementById('spinBtn');
         const modalOverlay = document.getElementById('modalOverlay');
-        const closeBtn = document.getElementById('closeBtn');
-        const claimBtn = document.getElementById('claimBtn');
-        const resultText = document.getElementById('resultText');
+
+
         const confettiContainer = document.getElementById('confettiContainer');
 
         // Create wheel labels
@@ -745,7 +729,7 @@
         }
 
         function showResult(prize) {
-            resultText.textContent = prize.text;
+
             modalOverlay.classList.add('show');
             createConfetti();
         }
