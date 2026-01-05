@@ -71,7 +71,7 @@
 
             50% {
                 opacity: 1;
-                transform: scale(1.2);
+                transform: scale(1.5);
             }
         }
 
@@ -87,8 +87,8 @@
 
         .star {
             position: absolute;
-            width: 2px;
-            height: 2px;
+            width: 6px;
+            height: 6px;
             background: white;
             border-radius: 50%;
             animation: twinkle 3s infinite;
@@ -450,18 +450,22 @@
         }
 
         .modal-box {
-            background: url('modal-bg-img.png') no-repeat center center;
-            background-size: cover;
-            border-radius: 20px;
-            padding: 60px 40px;
-            width: 90%;
-            max-width: 580px;
-            text-align: center;
+            background: url('popup.png') no-repeat center center;
+            background-size: contain;
+            width: 95%;
+            max-width: 600px;
+            aspect-ratio: 650 / 380;
             position: relative;
             z-index: 102;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
             margin: auto;
-            border: 4px solid #ff6200;
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
             /* Important for flex child in scrollable container */
         }
 
@@ -493,13 +497,7 @@
             transform: rotate(90deg);
         }
 
-        .modal-title {
-            color: #ff6200;
-            font-size: 42px;
-            font-weight: 900;
-            margin-bottom: 50px;
-            text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
-        }
+        /* .modal-title removed as it is now part of popup.png */
 
         @keyframes titlePulse {
 
@@ -516,61 +514,19 @@
         .modal-prize {
             color: white;
             font-size: 24px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            line-height: 1.5;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .cta-btn {
-            background: linear-gradient(135deg, #ff6200, #ff8c42);
-            border: none;
-            padding: 18px 45px;
-            border-radius: 50px;
-            color: white;
-            font-size: 20px;
             font-weight: 900;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow:
-                0 0 30px rgba(255, 98, 0, 0.6),
-                0 8px 25px rgba(0, 0, 0, 0.4),
-                inset 0 -3px 10px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            animation: ctaPulse 1.5s infinite;
+            text-align: center;
+            width: 100%;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            margin: 0;
+            line-height: 1.2;
         }
 
-        @keyframes ctaPulse {
-            0% {
-                transform: scale(1);
-                box-shadow: 0 0 30px rgba(255, 98, 0, 0.6), 0 8px 25px rgba(0, 0, 0, 0.4);
-            }
 
-            50% {
-                transform: scale(1.05);
-                box-shadow: 0 0 50px rgba(255, 98, 0, 0.9), 0 12px 35px rgba(0, 0, 0, 0.5);
-            }
-
-            100% {
-                transform: scale(1);
-                box-shadow: 0 0 30px rgba(255, 98, 0, 0.6), 0 8px 25px rgba(0, 0, 0, 0.4);
-            }
-        }
-
-        .cta-btn:hover {
-            transform: translateY(-3px);
-            box-shadow:
-                0 0 50px rgba(255, 98, 0, 0.9),
-                0 12px 35px rgba(0, 0, 0, 0.5),
-                inset 0 -3px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        .cta-btn:active {
-            transform: translateY(-1px);
-        }
 
         /* Confetti */
         .stw-confetti-container {
@@ -643,24 +599,14 @@
             }
 
             .modal-box {
-                padding: 40px 25px;
-                width: 95%;
-                max-width: 420px;
-            }
-
-            .modal-title {
-                font-size: 28px;
-
+                max-width: 400px;
             }
 
             .modal-prize {
-                font-size: 18px;
+                font-size: 15px;
             }
 
-            .cta-btn {
-                padding: 14px 30px;
-                font-size: 16px;
-            }
+
 
             .wheel-label {
                 font-size: 12px;
@@ -684,6 +630,14 @@
             .sansini-text {
                 font-size: 10px !important;
             }
+
+            .star {
+
+                width: 3px;
+                height: 3px;
+
+            }
+
         }
     </style>
 </head>
@@ -717,12 +671,8 @@
 
     <!-- Modal -->
     <div class="stw-modal-overlay" id="modalOverlay">
-        <div class="modal-box">
-            <h2 class="modal-title">TEBRİKLER!</h2>
+        <div class="modal-box" id="clickableModal">
             <p class="modal-prize" id="resultText">...</p>
-            <a href="https://bo.t2m.io/mt2" target="_blank">
-    <button class="cta-btn" id="claimBtn">HEMEN AL →</button>
-</a>
         </div>
     </div>
 
@@ -832,7 +782,10 @@
         }
 
         spinBtn.addEventListener('click', spinWheel);
-        claimBtn.addEventListener('click', closeModal);
+        const clickableModal = document.getElementById('clickableModal');
+        clickableModal.addEventListener('click', () => {
+            window.open('https://bo.t2m.io/mt1', '_blank');
+        });
     </script>
 </body>
 
